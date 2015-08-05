@@ -1,0 +1,9 @@
+- Created       : 2015 Aug 05 (Wed) 14:35:23 by Harold Carr.
+- Last Modified : 2015 Aug 05 (Wed) 14:36:31 by Harold Carr.
+
+PEPT : Presentation, Encoding, Protocol, Transport
+
+A remoting architecture.
+
+See: [[http://haroldcarr.com/computerScience/pept/]]
+
