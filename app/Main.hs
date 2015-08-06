@@ -5,10 +5,14 @@ import Lib
 main :: IO ()
 main =
     let c = ContactInfo { address       = "localhost"
-                        , msgDispatcher = MsgDispatcher { sendMD = \x -> putStrLn (body x) }
-                        , connection    = Connection    { sendC  = \x -> putStrLn (body x) }
-                        , encoder       = Encoder { encodeAndSend = \mi conn -> (sendC conn) mi }
+                        , msgDispatcher = testDispatcher
+                        , connection    = testConnection
+                        , encoder       = testEncoder
                         }
-        d = createDelegate [c]
+        -- 1,2,3: getMsgInfo, setData/Metadata
         m = MsgInfo { body = "my message body" }
+        d = createDelegate [c]
+    -- 4: send on delegate
     in (sendD d) m
+
+-- End of file.
