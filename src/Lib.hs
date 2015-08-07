@@ -51,20 +51,25 @@ delegateSend :: [ContactInfo] -> MsgInfo -> IO ()
 delegateSend contactInfoList msgInfo = do
     -- 5: pick ContactInfo
     let ci = head contactInfoList
-        -- 6: uses dispatcher that knows protocol
+        -- 6: use dispatcher that knows protocol
         md = msgDispatcher ci
     sendMD md ci msgInfo
 
 ------------------------------------------------------------------------------
 
 testDispatcher :: MsgDispatcher
-testDispatcher  = MsgDispatcher { sendMD = \ci mi -> sendC (connection ci) mi }
-
-testConnection :: Connection
-testConnection  = Connection    { sendC  = \mi -> putStrLn (body mi) }
+testDispatcher  = MsgDispatcher {
+    sendMD = \ci mi ->
+        let enco = encoder ci
+            conn = connection ci
+        in encodeAndSend enco mi conn
+}
 
 testEncoder    :: Encoder
 testEncoder     = Encoder       { encodeAndSend = \mi conn -> (sendC conn) mi }
+
+testConnection :: Connection
+testConnection  = Connection    { sendC  = \mi -> putStrLn (body mi) }
 
 -- End of file.
 
