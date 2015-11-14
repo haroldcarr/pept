@@ -1,6 +1,11 @@
+{-
+Created       : 2015 Aug 05 (Thu) 20:18:19 by Harold Carr.
+Last Modified : 2015 Aug 06 (Thu) 20:18:37 by Harold Carr.
+-}
+
 module Main where
 
-import Lib
+import           Lib
 
 main :: IO ()
 main =

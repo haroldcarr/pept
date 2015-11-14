@@ -1,3 +1,8 @@
+{-
+Created       : 2015 Aug 05 (Thu) 20:18:19 by Harold Carr.
+Last Modified : 2015 Aug 06 (Thu) 20:19:16 by Harold Carr.
+-}
+
 module Lib
 (
   Connection(..)
@@ -72,4 +77,3 @@ testConnection :: Connection
 testConnection  = Connection    { sendC  = \mi -> putStrLn (body mi) }
 
 -- End of file.
-
