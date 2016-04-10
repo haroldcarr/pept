@@ -1,6 +1,6 @@
 {-
 Created       : 2015 Aug 05 (Thu) 20:18:19 by Harold Carr.
-Last Modified : 2015 Aug 06 (Thu) 20:19:16 by Harold Carr.
+Last Modified : 2016 Apr 09 (Sat) 18:17:31 by Harold Carr.
 -}
 
 module Lib
@@ -53,9 +53,9 @@ createDelegate contactInfo =
            }
 
 delegateSend :: [ContactInfo] -> MsgInfo -> IO ()
-delegateSend contactInfoList msgInfo = do
+delegateSend cInfoList msgInfo = do
     -- 5: pick ContactInfo
-    let ci = head contactInfoList
+    let ci = head cInfoList
         -- 6: use dispatcher that knows protocol
         md = msgDispatcher ci
     sendMD md ci msgInfo
@@ -71,9 +71,9 @@ testDispatcher  = MsgDispatcher {
 }
 
 testEncoder    :: Encoder
-testEncoder     = Encoder       { encodeAndSend = \mi conn -> (sendC conn) mi }
+testEncoder     = Encoder       { encodeAndSend = flip sendC }
 
 testConnection :: Connection
-testConnection  = Connection    { sendC  = \mi -> putStrLn (body mi) }
+testConnection  = Connection    { sendC  = putStrLn . body }
 
 -- End of file.
